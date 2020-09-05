@@ -1,0 +1,256 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.event.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+/**
+ *
+ * Beschreibung
+ *
+ * @version 1.0 vom 04.09.2020
+ * @author 
+ */
+
+public class testframe extends JFrame {
+  // Anfang Attribute
+  private JButton bAddieren = new JButton();
+  private JButton bSubtrahieren = new JButton();
+  private JButton bMultiplizieren = new JButton();
+  private JButton bDividieren = new JButton();
+  private JLabel lEingabe1 = new JLabel();
+  private JLabel lEingabe2 = new JLabel();
+  private JLabel lAusgabe1 = new JLabel();
+  private JButton bCLEAR = new JButton();
+  private JNumberField jNumberField1 = new JNumberField();
+  private JNumberField jNumberField2 = new JNumberField();
+  private JNumberField jNumberField3 = new JNumberField();
+  private JLabel lKopiert = new JLabel();
+  private JButton bQuadrieren = new JButton();
+  private JButton bWurzel = new JButton();
+  private JButton bPotenzieren = new JButton();
+  private JLabel lUnmoeglich = new JLabel();
+  // Ende Attribute
+  
+  public testframe() { 
+    // Frame-Initialisierung
+    super();
+    setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+    int frameWidth = 300;
+    int frameHeight = 300;
+    setSize(frameWidth, frameHeight);
+    Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+    int x = (d.width - getSize().width) / 2;
+    int y = (d.height - getSize().height) / 2;
+    setLocation(x, y);
+    setTitle("testframe");
+    setResizable(false);
+    Container cp = getContentPane();
+    cp.setLayout(null);
+    // Anfang Komponenten
+    
+    bAddieren.setBounds(8, 120, 97, 25);
+    bAddieren.setText("Addieren");
+    bAddieren.setMargin(new Insets(2, 2, 2, 2));
+    bAddieren.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent evt) { 
+        bAddieren_ActionPerformed(evt);
+      }
+    });
+    cp.add(bAddieren);
+    bSubtrahieren.setBounds(112, 120, 97, 25);
+    bSubtrahieren.setText("Subtrahieren");
+    bSubtrahieren.setMargin(new Insets(2, 2, 2, 2));
+    bSubtrahieren.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent evt) { 
+        bSubtrahieren_ActionPerformed(evt);
+      }
+    });
+    cp.add(bSubtrahieren);
+    bMultiplizieren.setBounds(8, 152, 97, 25);
+    bMultiplizieren.setText("Multiplizieren");
+    bMultiplizieren.setMargin(new Insets(2, 2, 2, 2));
+    bMultiplizieren.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent evt) { 
+        bMultiplizieren_ActionPerformed(evt);
+      }
+    });
+    cp.add(bMultiplizieren);
+    bDividieren.setBounds(112, 152, 97, 25);
+    bDividieren.setText("Dividieren");
+    bDividieren.setMargin(new Insets(2, 2, 2, 2));
+    bDividieren.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent evt) { 
+        bDividieren_ActionPerformed(evt);
+      }
+    });
+    cp.add(bDividieren);
+    lEingabe1.setBounds(8, 24, 65, 19);
+    lEingabe1.setText("Eingabe:");
+    cp.add(lEingabe1);
+    lEingabe2.setBounds(8, 56, 65, 19);
+    lEingabe2.setText("Eingabe:");
+    cp.add(lEingabe2);
+    lAusgabe1.setBounds(8, 224, 65, 19);
+    lAusgabe1.setText("Ausgabe:");
+    cp.add(lAusgabe1);
+    bCLEAR.setBounds(8, 184, 201, 25);
+    bCLEAR.setText("CLEAR");
+    bCLEAR.setMargin(new Insets(2, 2, 2, 2));
+    bCLEAR.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent evt) { 
+        bCLEAR_ActionPerformed(evt);
+      }
+    });
+    cp.add(bCLEAR);
+    jNumberField1.setBounds(64, 224, 113, 25);
+    jNumberField1.setText("");
+    jNumberField1.setEditable(false);
+    cp.add(jNumberField1);
+    jNumberField2.setBounds(64, 24, 113, 25);
+    jNumberField2.setText("");
+    cp.add(jNumberField2);
+    jNumberField3.setBounds(64, 56, 113, 25);
+    jNumberField3.setText("");
+    cp.add(jNumberField3);
+    lKopiert.setBounds(184, 24, 81, 25);
+    lKopiert.setText("Kopiert!");
+    lKopiert.setVisible(false);
+    lKopiert.setForeground(Color.GREEN);
+    cp.add(lKopiert);
+
+    bQuadrieren.setBounds(216, 120, 65, 25);
+    bQuadrieren.setText("Quadrieren");
+    bQuadrieren.setMargin(new Insets(2, 2, 2, 2));
+    bQuadrieren.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent evt) { 
+        bQuadrieren_ActionPerformed(evt);
+      }
+    });
+    cp.add(bQuadrieren);
+    bWurzel.setBounds(216, 152, 65, 25);
+    bWurzel.setText("Wurzel");
+    bWurzel.setMargin(new Insets(2, 2, 2, 2));
+    bWurzel.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent evt) { 
+        bWurzel_ActionPerformed(evt);
+      }
+    });
+    cp.add(bWurzel);
+    bPotenzieren.setBounds(216, 184, 65, 25);
+    bPotenzieren.setText("Potenzieren");
+    bPotenzieren.setMargin(new Insets(2, 2, 2, 2));
+    bPotenzieren.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent evt) { 
+        bPotenzieren_ActionPerformed(evt);
+      }
+    });
+    cp.add(bPotenzieren);
+    lUnmoeglich.setBounds(184, 56, 110, 20);
+    lUnmoeglich.setText("Unmöglich");
+    lUnmoeglich.setVisible(false);
+    lUnmoeglich.setForeground(Color.RED);
+    cp.add(lUnmoeglich);
+    // Ende Komponenten
+    
+    setVisible(true);
+  } // end of public testframe
+  
+  // Anfang Methoden
+  
+  public static void main(String[] args) {
+    new testframe();
+  } // end of main
+  
+  public void bAddieren_ActionPerformed(ActionEvent evt) {
+    // TODO hier Quelltext einfügen
+    jNumberField1.setFloat(jNumberField2.getFloat() + jNumberField3.getFloat());
+    jNumberField2.setFloat(jNumberField1.getFloat());
+    lKopiert.setVisible(true);
+    Executors.newSingleThreadScheduledExecutor().schedule(() -> {
+      lKopiert.setVisible(false);
+    }, 500, TimeUnit.MILLISECONDS);
+  } // end of bAddieren_ActionPerformed
+
+  public void bSubtrahieren_ActionPerformed(ActionEvent evt) {
+    // TODO hier Quelltext einfügen
+    jNumberField1.setFloat(jNumberField2.getFloat() - jNumberField3.getFloat());
+    jNumberField2.setFloat(jNumberField1.getFloat());
+    lKopiert.setVisible(true);
+    Executors.newSingleThreadScheduledExecutor().schedule(() -> {
+      lKopiert.setVisible(false);
+    }, 500, TimeUnit.MILLISECONDS);
+  } // end of bSubtrahieren_ActionPerformed
+
+  public void bMultiplizieren_ActionPerformed(ActionEvent evt) {
+    // TODO hier Quelltext einfügen
+    jNumberField1.setFloat(jNumberField2.getFloat() * jNumberField3.getFloat());
+    jNumberField2.setFloat(jNumberField1.getFloat());
+    lKopiert.setVisible(true);
+    Executors.newSingleThreadScheduledExecutor().schedule(() -> {
+      lKopiert.setVisible(false);
+    }, 500, TimeUnit.MILLISECONDS);
+  } // end of bMultiplizieren_ActionPerformed
+
+  public void bDividieren_ActionPerformed(ActionEvent evt) {
+    // TODO hier Quelltext einfügen
+    jNumberField1.setFloat(jNumberField2.getFloat() / jNumberField3.getFloat());
+    jNumberField2.setFloat(jNumberField1.getFloat());
+    lKopiert.setVisible(true);
+    if (jNumberField3.getFloat() == 0)
+      lKopiert.setVisible(false);
+    Executors.newSingleThreadScheduledExecutor().schedule(() -> {
+      lKopiert.setVisible(false);
+    }, 500, TimeUnit.MILLISECONDS);
+    if (jNumberField3.getFloat() == 0)
+    lUnmoeglich.setVisible(true);
+    if (jNumberField3.getFloat() == 0)  
+    jNumberField1.clear();
+    if (jNumberField3.getFloat() == 0)  
+    jNumberField2.clear();  
+    Executors.newSingleThreadScheduledExecutor().schedule(() -> {
+      lUnmoeglich.setVisible(false);
+    }, 1500, TimeUnit.MILLISECONDS);  
+  } // end of bDividieren_ActionPerformed
+
+  public void bSubtrahieren1_ActionPerformed(ActionEvent evt) {
+  
+  }
+  public void bCLEAR_ActionPerformed(ActionEvent evt) {
+    // TODO hier Quelltext einfügen
+    jNumberField2.clear();
+    jNumberField3.clear();
+  } // end of bCLEAR_ActionPerformed
+
+  public void bQuadrieren_ActionPerformed(ActionEvent evt) {
+    // TODO hier Quelltext einfügen
+     jNumberField1.setFloat(jNumberField2.getFloat() * jNumberField2.getFloat());
+    jNumberField2.setFloat(jNumberField1.getFloat());
+    lKopiert.setVisible(true);
+    Executors.newSingleThreadScheduledExecutor().schedule(() -> {
+      lKopiert.setVisible(false);
+    }, 500, TimeUnit.MILLISECONDS);
+  } // end of bQuadrieren_ActionPerformed
+
+  public void bWurzel_ActionPerformed(ActionEvent evt) {
+    // TODO hier Quelltext einfügen
+    jNumberField1.setDouble(Math.sqrt(jNumberField2.getDouble()));
+    jNumberField2.setFloat(jNumberField1.getFloat());
+    lKopiert.setVisible(true);
+    Executors.newSingleThreadScheduledExecutor().schedule(() -> {
+      lKopiert.setVisible(false);
+    }, 500, TimeUnit.MILLISECONDS);
+  } // end of bWurzel_ActionPerformed
+
+  public void bPotenzieren_ActionPerformed(ActionEvent evt) {
+    // TODO hier Quelltext einfügen
+   jNumberField1.setDouble(Math.pow(jNumberField2.getDouble(), jNumberField3.getDouble()));
+    jNumberField2.setFloat(jNumberField1.getFloat());
+    lKopiert.setVisible(true);
+    Executors.newSingleThreadScheduledExecutor().schedule(() -> {
+      lKopiert.setVisible(false);
+    }, 500, TimeUnit.MILLISECONDS); 
+  } // end of bPotenzieren_ActionPerformed
+
+  // Ende Methoden
+} // end of class testframe
